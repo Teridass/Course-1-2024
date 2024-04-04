@@ -22,7 +22,7 @@ class MainWindow:
 
         # Создаем метки
 
-        self.author_lb = Label(text="Курсовая работа студентки группы 23-ВТ-1 ",
+        self.author_lb = Label(text="Курсовая работа студентки группы 23-ВТ-1 Матис О. О.",
                                font="Arial_Narrow 10 bold", bg="#ffd166",
                                fg="#073b4c"
                                )
@@ -103,16 +103,18 @@ class MainWindow:
             self.discipline_txt.insert(1.0, f"Файл {name_file} не найден!")
 
     def search(self, event):
-        cnt = 0
         self.discipline_txt.delete(1.0, END)
-        course = self.ask_ent.get()
-        for i in range(len(infos) - 1):
-            if course == infos[i][2] and course in ["1", "2", "3", "4"]:
-                self.discipline_txt.insert(1.0,
-                                           f"Дисциплина: {infos[i][0]}; Часы: {infos[i][1]}; Отчет: {infos[i][3]}; Курс: {course} \n")
-                cnt += 1
-        if cnt == 0:
-            self.discipline_txt.insert(1.0, "Такого курса нет в списке!")
+        if infos:
+            cnt = 0
+            course = self.ask_ent.get()
+            for i in range(len(infos) - 1):
+                if course == infos[i][2] and course in ["1", "2", "3", "4"]:
+                    self.discipline_txt.insert(1.0,
+                                               f"Дисциплина: {infos[i][0]}; Часы: {infos[i][1]}; Отчет: {infos[i][3]}; Курс: {course} \n")
+                    cnt += 1
+            if cnt == 0:
+                self.discipline_txt.insert(1.0, "Такого курса нет в списке!")
+        else: self.discipline_txt.insert(1.0, "Сначала откройте файл!")
 
 
 root = Tk()

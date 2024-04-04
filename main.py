@@ -1,4 +1,3 @@
-import tkinter
 from tkinter import *
 
 infos, result = [], []
@@ -8,53 +7,56 @@ class MainWindow:
     def __init__(self, main):
         # Создаем кнопки
         self.exit_btn = Button(main, text="Выход",
-                               font=15, bg="#bc4749",
-                               fg="#2b2d42",
+                               font="Arial_Narrow 10 bold", bg="#ef476f",
+                               fg="#073b4c",
                                command=root.destroy
                                )
         self.open_file_btn = Button(main, text="Открыть",
-                                    font=15, bg="#a7c957",
-                                    fg="#2b2d42",
+                                    font="Arial_Narrow 10 bold", bg="#06d6a0",
+                                    fg="#073b4c",
                                     )
         self.ask_btn = Button(main, text="Поиск",
-                              font=15, bg="#a7c957",
-                              fg="#2b2d42"
+                              font="Arial_Narrow 10 bold", bg="#06d6a0",
+                              fg="#073b4c"
                               )
 
         # Создаем метки
 
-        self.author_lb = Label(text="Курсовая работа студентки группы 23-ВТ-1 Матис О. О.",
-                               font=15, bg="#8d99ae",
-                               fg="#2b2d42"
+        self.author_lb = Label(text="Курсовая работа студентки группы 23-ВТ-1 ",
+                               font="Arial_Narrow 10 bold", bg="#ffd166",
+                               fg="#073b4c"
                                )
         self.name_file_lb = Label(text="Введите имя файла:",
-                                  font=15, bg="#8d99ae",
-                                  fg="#2b2d42"
+                                  font="Arial_Narrow 10 bold", bg="#ffd166",
+                                  fg="#073b4c"
                                   )
         self.ask_lb = Label(text="Введите номер курса:",
-                            font=15, bg="#8d99ae",
-                            fg="#2b2d42"
+                            font="Arial_Narrow 10 bold", bg="#ffd166",
+                            fg="#073b4c"
                             )
         self.discipline_lb = Label(text="Полученные сведения:",
-                                   font=15, bg="#8d99ae",
-                                   fg="#2b2d42"
+                                   font="Arial_Narrow 10 bold", bg="#ffd166",
+                                   fg="#073b4c"
                                    )
 
         # Создаем текстовые поля для ввода
 
         self.name_file_ent = Entry(width=35,
                                    bg="#edf2f4",
-                                   fg="#2b2d42"
+                                   fg="#073b4c",
+                                   font="Arial_Narrow 10"
                                    )
         self.ask_ent = Entry(width=35,
                              bg="#edf2f4",
-                             fg="#2b2d42"
+                             fg="#073b4c",
+                             font="Arial_Narrow 10"
                              )
         # Создаем многострочное поле для вывода полученных данных
         self.discipline_txt = Text(width=70,
                                    height=10,
                                    bg="#edf2f4",
-                                   fg="#2b2d42"
+                                   fg="#073b4c",
+                                   font="Arial_Narrow 11"
                                    )
         # Располагаем виджеты
         self.author_lb.grid(row=0, column=0,
@@ -104,9 +106,7 @@ class MainWindow:
         cnt = 0
         self.discipline_txt.delete(1.0, END)
         course = self.ask_ent.get()
-        print(type(course))
         for i in range(len(infos) - 1):
-            print(infos[i])
             if course == infos[i][2] and course in ["1", "2", "3", "4"]:
                 self.discipline_txt.insert(1.0,
                                            f"Дисциплина: {infos[i][0]}; Часы: {infos[i][1]}; Отчет: {infos[i][3]}; Курс: {course} \n")
@@ -114,9 +114,10 @@ class MainWindow:
         if cnt == 0:
             self.discipline_txt.insert(1.0, "Такого курса нет в списке!")
 
+
 root = Tk()
-root.geometry("610x310")
-root["bg"] = "#8d99ae"
+root.geometry("580x300")
+root["bg"] = "#ffd166"
 root.resizable(False, False)
 root.title("Получение сведений о дисциплинах и видах отчетности указанного курса")
 q = MainWindow(root)
